@@ -2,11 +2,13 @@
 <resources>
 
     <string name="app_name">Bloc notes</string>
-    
-    
+    <string name="action_settings">Settings</string>
+	
     <!-- categoryListActivity -->
     <string name="category_Screen_Name">Mes Catégories</string>
-    <string name="action_settings">Settings</string>
-	<string name="Add_Categorie_Button_Title">Nouvelle catégorie</string>
+    <string name="search_Button">Rechercher</string>
+    <string name="cancel_Button">Annuler</string>
+    <string name="add_Categorie_Button">Nouvelle catégorie</string>
+    <string name="search_Input_Category">Catégorie à rechercher</string>
     
 </resources>

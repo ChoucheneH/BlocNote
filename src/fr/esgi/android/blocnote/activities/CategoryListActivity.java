@@ -8,12 +8,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import fr.esgi.android.blocnote.R;
 
 
 public class CategoryListActivity extends ListActivity {
 	private Context context;
 	private Button categoryButton;
+	private Button categorySearchButton;
+	private EditText categorySearchInput;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +25,7 @@ public class CategoryListActivity extends ListActivity {
 		context=this;
 		setTitle(R.string.category_Screen_Name);
 		categoryButton = (Button) findViewById(R.id.add_new_caterory);
-		categoryButton.setText(R.string.Add_Categorie_Button_Title);
+		categoryButton.setText(R.string.add_Categorie_Button);
 
 		categoryButton.setOnClickListener(new OnClickListener() {
 			
@@ -32,6 +35,11 @@ public class CategoryListActivity extends ListActivity {
 				
 			}
 		});
+		categorySearchButton = (Button) findViewById(R.id.categoryBtnSearch);
+		categorySearchButton.setText(R.string.search_Button);
+		categorySearchInput = (EditText) findViewById(R.id.categorySearchInput);
+		categorySearchInput.setHint(R.string.search_Input_Category);
+		
 	}
 
 
