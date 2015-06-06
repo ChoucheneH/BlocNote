@@ -15,7 +15,7 @@ import fr.esgi.android.blocnote.adapters.CategoryListAdapter;
 import fr.esgi.android.blocnote.datas.MyDatabaseHelper;
 
 
-public class CategoryListActivity extends ListActivity {
+public class ListCategoryActivity extends ListActivity {
 	private Context context;
 	private Button AddCategoryButton;
 	private Button categorySearchButton;
@@ -33,21 +33,21 @@ public class CategoryListActivity extends ListActivity {
 		AddCategoryButton.setText(R.string.add_Category_Button);
 
 		AddCategoryButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				AddCategoryIntent = new Intent(
-						CategoryListActivity.this,
+						ListCategoryActivity.this,
 						AddCategoryActivity.class);
 				startActivityForResult(AddCategoryIntent,2);
-				
+
 			}
 		});
 		categorySearchButton = (Button) findViewById(R.id.categoryBtnSearch);
 		categorySearchButton.setText(R.string.search_Button);
 		categorySearchInput = (EditText) findViewById(R.id.categorySearchInput);
 		categorySearchInput.setHint(R.string.search_Input_Category);
-		
+
 		SearchAllCategory();
 	}
 
@@ -67,12 +67,25 @@ public class CategoryListActivity extends ListActivity {
 		return super.onOptionsItemSelected(item);
 	}
 	/*Search all category*/
-	
+
 	protected void SearchAllCategory() {
-		categoryListA = new CategoryListAdapter(CategoryListActivity.this,
+		categoryListA = new CategoryListAdapter(ListCategoryActivity.this,
 				MyDatabaseHelper.getInstance(context).getAllCategories());
 		setListAdapter(categoryListA);
-		
+
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode ==2){
+			categoryListA = new CategoryListAdapter(
+					ListCategoryActivity.this, 
+					MyDatabaseHelper.getInstance(context)
+					.getAllCategories());
+
+			setListAdapter(categoryListA);
+		}
+
 	}
 
 }
