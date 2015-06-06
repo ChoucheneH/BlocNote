@@ -2,6 +2,7 @@ package fr.esgi.android.blocnote.activities;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,28 +11,35 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import fr.esgi.android.blocnote.R;
+import fr.esgi.android.blocnote.adapters.CategoryListAdapter;
+import fr.esgi.android.blocnote.datas.MyDatabaseHelper;
 
 
 public class CategoryListActivity extends ListActivity {
 	private Context context;
-	private Button categoryButton;
+	private Button AddCategoryButton;
 	private Button categorySearchButton;
 	private EditText categorySearchInput;
+	private CategoryListAdapter categoryListA;
+	private Intent AddCategoryIntent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_category_list);
 		context=this;
-		setTitle(R.string.category_Screen_Name);
-		categoryButton = (Button) findViewById(R.id.add_new_caterory);
-		categoryButton.setText(R.string.add_Categorie_Button);
+		setTitle(R.string.list_category_Screen_Name);
+		AddCategoryButton = (Button) findViewById(R.id.add_new_caterory);
+		AddCategoryButton.setText(R.string.add_Category_Button);
 
-		categoryButton.setOnClickListener(new OnClickListener() {
+		AddCategoryButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				AddCategoryIntent = new Intent(
+						CategoryListActivity.this,
+						AddCategoryActivity.class);
+				startActivityForResult(AddCategoryIntent,2);
 				
 			}
 		});
@@ -40,6 +48,7 @@ public class CategoryListActivity extends ListActivity {
 		categorySearchInput = (EditText) findViewById(R.id.categorySearchInput);
 		categorySearchInput.setHint(R.string.search_Input_Category);
 		
+		SearchAllCategory();
 	}
 
 
@@ -57,4 +66,13 @@ public class CategoryListActivity extends ListActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	/*Search all category*/
+	
+	protected void SearchAllCategory() {
+		categoryListA = new CategoryListAdapter(CategoryListActivity.this,
+				MyDatabaseHelper.getInstance(context).getAllCategories());
+		setListAdapter(categoryListA);
+		
+	}
+
 }

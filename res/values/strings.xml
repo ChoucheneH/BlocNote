@@ -5,10 +5,17 @@
     <string name="action_settings">Settings</string>
 	
     <!-- categoryListActivity -->
-    <string name="category_Screen_Name">Mes Catégories</string>
+    <string name="list_category_Screen_Name">Mes Catégories</string>
     <string name="search_Button">Rechercher</string>
     <string name="cancel_Button">Annuler</string>
-    <string name="add_Categorie_Button">Nouvelle catégorie</string>
+    <string name="add_Category_Button">Nouvelle catégorie</string>
     <string name="search_Input_Category">Catégorie à rechercher</string>
+    
+    
+    <!-- AddCategoryActivity -->
+    <string name="add_Category_Screen_Name">Nouvelle catégorie</string>
+    <string name="modify_Botton">Modifier</string>
+    <string name="input_Category_Hint">Nom de la catégorie</string>
+    <string name="add_Category">Créer</string>
     
 </resources>
