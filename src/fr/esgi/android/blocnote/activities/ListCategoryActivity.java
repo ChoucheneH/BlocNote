@@ -4,12 +4,15 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import fr.esgi.android.blocnote.R;
 import fr.esgi.android.blocnote.adapters.CategoryListAdapter;
 import fr.esgi.android.blocnote.datas.MyDatabaseHelper;
@@ -18,7 +21,6 @@ import fr.esgi.android.blocnote.datas.MyDatabaseHelper;
 public class ListCategoryActivity extends ListActivity {
 	private Context context;
 	private Button AddCategoryButton;
-	private Button categorySearchButton;
 	private EditText categorySearchInput;
 	private CategoryListAdapter categoryListA;
 	private Intent AddCategoryIntent;
@@ -43,12 +45,35 @@ public class ListCategoryActivity extends ListActivity {
 
 			}
 		});
-		categorySearchButton = (Button) findViewById(R.id.categoryBtnSearch);
-		categorySearchButton.setText(R.string.search_Button);
+
 		categorySearchInput = (EditText) findViewById(R.id.categorySearchInput);
 		categorySearchInput.setHint(R.string.search_Input_Category);
+		categorySearchInput.addTextChangedListener(new TextWatcher() {
 
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				categorySearch(categorySearchInput.getText().toString());
+				Toast.makeText(getApplicationContext(), "Les nombres d'enregistrement : "+categoryListA.getCount(), Toast.LENGTH_SHORT).show();
+
+			}
+
+
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+
+			}
+		});
 		SearchAllCategory();
+
 	}
 
 
@@ -86,6 +111,10 @@ public class ListCategoryActivity extends ListActivity {
 			setListAdapter(categoryListA);
 		}
 
+	}
+	private void categorySearch(String categoryName){
+		categoryListA = new CategoryListAdapter(ListCategoryActivity.this, MyDatabaseHelper.getInstance(context).getCategoriesForSearch(categoryName));
+		setListAdapter(categoryListA);
 	}
 
 }

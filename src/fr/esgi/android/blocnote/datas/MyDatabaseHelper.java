@@ -109,4 +109,22 @@ public class MyDatabaseHelper extends SQLiteOpenHelper{
 
 	}
 
+	public List<Category> getCategoriesForSearch(String categoryName) {
+
+		List<Category> categories = new LinkedList<Category>();
+		String query = "SELECT * FROM " + TABLE_CATEGORIES + " WHERE "+KEY_NAME_CATEGORY+" LIKE '%" + categoryName + "%'";
+		SQLiteDatabase db = getInstance(ctx).getWritableDatabase();
+		Cursor cursor = db.rawQuery(query, null);
+		Category category = null;
+		if (cursor.moveToFirst()) {
+			do {
+				category = new Category();
+				category.setId(Integer.parseInt(cursor.getString(0)));
+				category.setName(cursor.getString(1));
+				categories.add(category);
+			} while (cursor.moveToNext());
+		}
+		return categories;
+	}
+
 }
