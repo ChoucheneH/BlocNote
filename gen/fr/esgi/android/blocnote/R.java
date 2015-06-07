@@ -31,6 +31,8 @@ public final class R {
         public static final int add_new_caterory=0x7f080000;
         public static final int catTextView=0x7f080004;
         public static final int categorySearchInput=0x7f080001;
+        public static final int deleteCategory=0x7f080007;
+        public static final int modifyCategory=0x7f080006;
     }
     public static final class layout {
         public static final int activity_category_list=0x7f030000;
@@ -39,8 +41,12 @@ public final class R {
     }
     public static final class menu {
         public static final int main=0x7f070000;
+        public static final int menu_list_category=0x7f070001;
     }
     public static final class string {
+        /**  Menu 
+         */
+        public static final int ModifyCategory=0x7f05000b;
         public static final int action_settings=0x7f050001;
         public static final int add_Category=0x7f05000a;
         public static final int add_Category_Button=0x7f050005;
@@ -49,11 +55,12 @@ public final class R {
         public static final int add_Category_Screen_Name=0x7f050007;
         public static final int app_name=0x7f050000;
         public static final int cancel_Button=0x7f050004;
+        public static final int deleteCategory=0x7f05000c;
         public static final int input_Category_Hint=0x7f050009;
         /**  categoryListActivity 
          */
         public static final int list_category_Screen_Name=0x7f050002;
-        public static final int modify_Botton=0x7f050008;
+        public static final int modify_Button=0x7f050008;
         public static final int search_Button=0x7f050003;
         public static final int search_Input_Category=0x7f050006;
     }

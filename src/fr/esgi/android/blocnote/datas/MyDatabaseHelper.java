@@ -127,4 +127,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper{
 		return categories;
 	}
 
+	public void deleteCategory(int id) {
+				SQLiteDatabase db = getInstance(ctx).getWritableDatabase();
+				db.delete(TABLE_CATEGORIES, KEY_ID_CATEGORY + " = ?",
+						new String[] { String.valueOf(id) });
+				db.close();
+	}
+
 }
